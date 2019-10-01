@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+
+    volumes:
+      - .:/usr/src/searchable
+    env_file:
+      - .env/development/database
+      - .env/development/web
+      - .env/test/database
+      - .env/test/web
+
+  database:
+     image: mongo
+     env_file:
+      - .env/development/database
+      - .env/test/database
