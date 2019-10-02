@@ -30,8 +30,8 @@ class PagesLoader
   end
 
   def self.persist_pages(texts, docs)
-    texts.each do |txt, title_txt|
-      docs.each do |doc|
+    Parallel.each(texts, in_processes: 4) do |txt, title_txt|
+      Parallel.each(docs, in_processes: 4) do |doc|
         page_url = doc.attributes['href'].value
         Page.new({url: page_url, title: title_txt, content: txt}).save
       end
