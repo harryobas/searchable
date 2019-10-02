@@ -3,6 +3,7 @@ FROM ruby:2.5
 RUN apt-get update -yqq
 RUN apt-get install -yqq --no-install-recommends nodejs
 
+
 COPY Gemfile* /usr/src/searchable/
 WORKDIR /usr/src/searchable/
 
